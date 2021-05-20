@@ -1,0 +1,32 @@
+<%- include("./partials/header")  %>
+<div class="main-div">
+    <div class="child-div">
+        <figure>
+            <img src="images/todo.svg" alt="todologo">
+            <figcaption>Add your list here</figcaption>
+        </figure>
+        <div class="addItems">
+            <form action="/add/todo" method="POST" class="d-flex" id="TodoForm">
+                <input type="text" name="todo" placeholder="Add items...">
+                <i class="fa fa-plus add-btn" title="Add item" onclick="return AddTodo()"></i>
+            </form>
+        </div>
+        <div class="showItems">
+            <% todo.forEach(todos => { %>
+                <div class="eachItem">
+                    <h3><%= todos.todo %></h3>
+                    <a href="/delete/todo/<%= todos._id %>"><i class="far fa-trash-alt add-btn" title="Delete item"></i></a>
+                </div>
+            <% }) %>
+        </div>
+        <div class="showItems">
+            <button class="btn effect04" data-sm-link-text="Remove All" onclick="location.href = '/delete/deleteAllTodo'"><span>CHECK LIST</span></button>
+        </div>
+    </div>
+</div>
+<script>
+    function AddTodo(){
+        $('#TodoForm').submit();
+    }
+</script>
+<%- include("./partials/footer")  %>
